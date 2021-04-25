@@ -219,7 +219,6 @@ class PokerStrengthTest {
 
         Boolean actualResult = ps.isTwoPair(cards);
         assertEquals(false, actualResult);
-
     }
 
     @Test

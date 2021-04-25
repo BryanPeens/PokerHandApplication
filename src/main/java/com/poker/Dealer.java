@@ -1,14 +1,13 @@
 package com.poker;
 
 import java.util.Random;
-
 import static com.poker.SuitsRanks.SUITS;
 import static com.poker.SuitsRanks.RANKS;
 import static com.poker.SuitsRanks.SIZE;
 
 class Dealer {
-    private static Card[] deckOfCards = new Card[SIZE];
-    private static int numOfCardsPerPlayer = 5;
+    private Card[] deckOfCards = new Card[SIZE];
+    private int numOfCardsPerPlayer = 5;
 
     public Dealer() {
         int count = 0;

@@ -5,12 +5,14 @@
 
 if [[ $OPTION = "test" ]]
 then
-      # echo "\$var is empty"
+      # This will run the tests.
       ./mvnw clean test
 else
-      # echo "\$var is NOT empty"
+      # This will complete the package phase and write only errors to the console.
+      # The package phase includes: compilation, unit tests and build.
       ./mvnw clean package > /dev/null
 
+      # This will run the compiled console application.
       java -cp target/PokerHandApplication-1.0.0.jar com.poker.App
 fi
 

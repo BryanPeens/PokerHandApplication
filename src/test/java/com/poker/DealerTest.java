@@ -4,11 +4,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static com.poker.SuitsRanks.SIZE;
 import static com.poker.SuitsRanks.SUITS;
-
-
 import static com.poker.SuitsRanks.RANKS;
 
 public class DealerTest {

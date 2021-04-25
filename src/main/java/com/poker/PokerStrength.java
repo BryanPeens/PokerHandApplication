@@ -3,8 +3,7 @@ package com.poker;
 import java.util.List;
 
 public class PokerStrength {
-
-    public void Evaluate(List<Card> cards){
+    public void Evaluate(List<Card> cards) {
         if (isStraightFlush(cards)) {
             System.out.println("You have: Straight Flush");
         }
@@ -35,59 +34,59 @@ public class PokerStrength {
         }
     }
 
-    public Boolean isStraightFlush(List<Card> cards){
+    public Boolean isStraightFlush(List<Card> cards) {
         return isStraight(cards) && isFlush(cards);
     }
 
-    public Boolean isFourOfAKind(List<Card> cards){
+    public Boolean isFourOfAKind(List<Card> cards) {
         Boolean isFourOfAKind = false;
         for (Card card : cards) {
            int counter = 0;
            String currentRank = card.rank;
            for (Card c : cards) {
-                if(c.getRank() == currentRank){
+                if(c.getRank() == currentRank) {
                     counter++;
                 }
-                if(counter == 4){
+                if(counter == 4) {
                     isFourOfAKind = true;
                     break;
                 }
             }
-            if(isFourOfAKind){
+            if(isFourOfAKind) {
                 break;
             }
         }
         return isFourOfAKind;
     }
 
-    public Boolean isFullHouse(List<Card> cards){
+    public Boolean isFullHouse(List<Card> cards) {
         return isOnePair(cards) && isThreeOfAKind(cards);
     }
 
-    public Boolean isFlush(List<Card> cards){
+    public Boolean isFlush(List<Card> cards) {
         Boolean isFlush = true;
         String firstSuit = cards.get(0).suit;
         for (Card card : cards) {
-            if(card.suit != firstSuit){
+            if(card.suit != firstSuit) {
                 isFlush = false;
             }
         }
         return isFlush;
     }
 
-    public Boolean isStraight(List<Card> cards){
+    public Boolean isStraight(List<Card> cards) {
         Card.sort(cards);
         Boolean isStraight = true;
 
         for (int i = 0; i < cards.size(); i++) {
-            if(i + 1 == cards.size()){
+            if(i + 1 == cards.size()) {
                 break;
             }
 
             Card currentCard = cards.get(i);
             Card nextCard = cards.get(i+1);
 
-            if(currentCard.rankIndex() + 1 != nextCard.rankIndex()){
+            if(currentCard.rankIndex() + 1 != nextCard.rankIndex()) {
                 isStraight = false;
                 break;
             }
@@ -95,7 +94,7 @@ public class PokerStrength {
         return isStraight;
     }
 
-    public Boolean isThreeOfAKind(List<Card> cards){
+    public Boolean isThreeOfAKind(List<Card> cards) {
         Boolean isThreeOfKind = false;
 
         for (Card card : cards) {
@@ -103,33 +102,33 @@ public class PokerStrength {
            String currentRank = card.rank;
 
            for (Card c : cards) {
-                if(c.getRank() == currentRank){
+                if(c.getRank() == currentRank) {
                     counter++;
                 }
-                if(counter == 3){
+                if(counter == 3) {
                     isThreeOfKind = true;
                     break;
                 }
             }
 
-            if(isThreeOfKind){
+            if(isThreeOfKind) {
                 break;
             }
         }
         return isThreeOfKind;
     }
 
-    public Boolean isTwoPair(List<Card> cards){
+    public Boolean isTwoPair(List<Card> cards) {
         int counter = 0;
         int sum = 0;
 
         for (Card card : cards) {
            String currentRank = card.rank;
            for (Card c : cards) {
-                if(c.getRank() == currentRank){
+                if(c.getRank() == currentRank) {
                     counter++;
                 }
-                if(counter > 1){
+                if(counter > 1) {
                     sum++;
                     counter = 0;
                 }

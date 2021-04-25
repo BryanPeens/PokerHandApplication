@@ -1,11 +1,11 @@
 package com.poker;
-import static com.poker.SuitsRanks.SUITS;
-import static com.poker.SuitsRanks.RANKS;
 
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static com.poker.SuitsRanks.SUITS;
+import static com.poker.SuitsRanks.RANKS;
 
 public class CardTest {
 

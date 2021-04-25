@@ -1,11 +1,7 @@
 package com.poker;
 
-/**
- * CARD APPLICATION
- */
 public final class App {
-    private App() {
-    }
+    private App() {}
 
     public static void main(String[] args) {
         Dealer dealer = new Dealer();

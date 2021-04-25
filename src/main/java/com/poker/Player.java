@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Player {
-
     private List<Card> cards = new ArrayList<>();
 
     public Player() {}
@@ -13,20 +12,20 @@ class Player {
         return this.cards;
     }
 
-    void showCards() {
+    public String showCards() {
         Card.sort(cards);
-        System.out.printf("Your hand: ");
+        String message = "Your hand: ";
 
         for (Card card : cards) {
-            System.out.printf(card.rank + " " + card.suit + " ");
+            message += card.rank + " " + card.suit + " ";
         }
 
-        System.out.println(" ");
+        System.out.println(message);
+
+        return message;
     }
 
     void receiveCard(Card card) {
         this.cards.add(card);
     }
 }
-
-
