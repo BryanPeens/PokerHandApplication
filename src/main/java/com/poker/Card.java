@@ -1,6 +1,6 @@
-package test;
+package com.poker;
 
-import static test.SuitsRanks.RANKS;
+import static com.poker.SuitsRanks.RANKS;
 import java.lang.Comparable;
 import java.util.Collections;
 import java.util.List;
@@ -31,6 +31,11 @@ class Card implements Comparable<Card> {
 
     public static void sort(List<Card> cards){
         Collections.sort(cards, (card1, card2) ->  card1.compareTo(card2));
+    }
+
+    public static void reverse(List<Card> cards){
+        Card.sort(cards);
+        Collections.reverse(cards);
     }
 
     @Override

@@ -1,16 +1,17 @@
-package test;
+package com.poker;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static test.SuitsRanks.SUITS;
-import static test.SuitsRanks.RANKS;
+import static com.poker.SuitsRanks.SUITS;
+import static com.poker.SuitsRanks.RANKS;
 
 class PokerStrengthTest {
 
     @Test
     void testIsStraightFlushTrue() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -25,7 +26,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsStraightFlushFalse() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -40,22 +41,22 @@ class PokerStrengthTest {
 
     @Test
     void testIsFourOfAKindTrue() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
-        cards.add(new Card(SUITS[0], RANKS[2]));
-        cards.add(new Card(SUITS[1], RANKS[1]));
-        cards.add(new Card(SUITS[2], RANKS[2]));
-        cards.add(new Card(SUITS[3], RANKS[4]));
-        cards.add(new Card(SUITS[1], RANKS[2]));
+        cards.add(new Card(SUITS[0], RANKS[9]));
+        cards.add(new Card(SUITS[1], RANKS[9]));
+        cards.add(new Card(SUITS[2], RANKS[9]));
+        cards.add(new Card(SUITS[3], RANKS[9]));
+        cards.add(new Card(SUITS[1], RANKS[0]));
 
-        Boolean actualResult = ps.isThreeOfAKind(cards);
+        Boolean actualResult = ps.isFourOfAKind(cards);
         assertEquals(true, actualResult);
     }
 
     @Test
     void testIsFourOfAKindFalse() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -64,17 +65,43 @@ class PokerStrengthTest {
         cards.add(new Card(SUITS[3], RANKS[2]));
         cards.add(new Card(SUITS[1], RANKS[6]));
 
-        Boolean actualResult = ps.isThreeOfAKind(cards);
+        Boolean actualResult = ps.isFourOfAKind(cards);
         assertEquals(false, actualResult);
-
     }
 
+    @Test
+    void testIsFullHouseTrue() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
 
+        cards.add(new Card(SUITS[0], RANKS[2]));
+        cards.add(new Card(SUITS[1], RANKS[2]));
+        cards.add(new Card(SUITS[2], RANKS[12]));
+        cards.add(new Card(SUITS[3], RANKS[12]));
+        cards.add(new Card(SUITS[1], RANKS[12]));
 
+        Boolean actualResult = ps.isFullHouse(cards);
+        assertEquals(true, actualResult);
+    }
+
+    @Test
+    void testIsFullHouseFalse() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
+
+        cards.add(new Card(SUITS[0], RANKS[0]));
+        cards.add(new Card(SUITS[1], RANKS[1]));
+        cards.add(new Card(SUITS[2], RANKS[2]));
+        cards.add(new Card(SUITS[3], RANKS[11]));
+        cards.add(new Card(SUITS[1], RANKS[6]));
+
+        Boolean actualResult = ps.isFullHouse(cards);
+        assertEquals(false, actualResult);
+    }
 
     @Test
     void testIsFlushTrue() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -89,7 +116,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsFlushFalse() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -104,7 +131,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsStraightTrue() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[2], RANKS[1]));
@@ -119,7 +146,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsStraightFalse() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[1], RANKS[0]));
@@ -135,7 +162,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsThreeOfAKindTrue() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[2]));
@@ -150,7 +177,7 @@ class PokerStrengthTest {
 
     @Test
     void testIsThreeOfAKindFalse() {
-        List<Card> cards = new ArrayList();
+        List<Card> cards = new ArrayList<>();
         PokerStrength ps = new PokerStrength();
 
         cards.add(new Card(SUITS[0], RANKS[0]));
@@ -164,39 +191,64 @@ class PokerStrengthTest {
 
     }
 
+    @Test
+    void testIsTwoPairTrue() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
 
+        cards.add(new Card(SUITS[0], RANKS[2]));
+        cards.add(new Card(SUITS[1], RANKS[2]));
+        cards.add(new Card(SUITS[2], RANKS[10]));
+        cards.add(new Card(SUITS[3], RANKS[4]));
+        cards.add(new Card(SUITS[1], RANKS[10]));
 
+        Boolean actualResult = ps.isTwoPair(cards);
+        assertEquals(true, actualResult);
+    }
 
+    @Test
+    void testIsTwoPairFalse() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
 
+        cards.add(new Card(SUITS[0], RANKS[2]));
+        cards.add(new Card(SUITS[1], RANKS[2]));
+        cards.add(new Card(SUITS[2], RANKS[2]));
+        cards.add(new Card(SUITS[3], RANKS[2]));
+        cards.add(new Card(SUITS[1], RANKS[6]));
 
+        Boolean actualResult = ps.isTwoPair(cards);
+        assertEquals(false, actualResult);
 
+    }
 
+    @Test
+    void testIsOnePairTrue() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
 
+        cards.add(new Card(SUITS[0], RANKS[2]));
+        cards.add(new Card(SUITS[1], RANKS[1]));
+        cards.add(new Card(SUITS[2], RANKS[9]));
+        cards.add(new Card(SUITS[3], RANKS[4]));
+        cards.add(new Card(SUITS[1], RANKS[2]));
 
+        Boolean actualResult = ps.isOnePair(cards);
+        assertEquals(true, actualResult);
+    }
 
+    @Test
+    void testIsOnePairFalse() {
+        List<Card> cards = new ArrayList<>();
+        PokerStrength ps = new PokerStrength();
 
+        cards.add(new Card(SUITS[0], RANKS[0]));
+        cards.add(new Card(SUITS[1], RANKS[1]));
+        cards.add(new Card(SUITS[2], RANKS[2]));
+        cards.add(new Card(SUITS[3], RANKS[11]));
+        cards.add(new Card(SUITS[1], RANKS[6]));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Boolean actualResult = ps.isOnePair(cards);
+        assertEquals(false, actualResult);
+    }
 }
